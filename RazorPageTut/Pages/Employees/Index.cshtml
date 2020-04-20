@@ -1,0 +1,33 @@
+﻿@page
+
+@model RazorPageTut.Pages.Employees.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    ViewData["ShowBnt"] = true;
+}
+<style>
+    .btn {
+        width: 75px;
+    }
+</style>
+
+<form method="get">
+    <div class="input-group">
+        <input class="form-control" asp-for="SearchTerm" />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Browse</button>
+        </div>
+
+    </div>
+
+
+</form>
+
+        @await Component.InvokeAsync("HeadCount");
+<h1>Employees</h1>
+<div class="card-deck">
+    @foreach (var employee in Model.Employees)
+    {
+        <partial name="_DisplayEmployeePartial" model="employee" view-data="ViewData" />
+    }
+</div>
